@@ -2,5 +2,8 @@ from django.db import models
 
 # Create your models here.
 
-class Lista(models.Model):
-    image = models.ImageField(upload_to='img')
+class Card:
+    image: str
+
+    def __init__(self,image):
+        self.image = image
