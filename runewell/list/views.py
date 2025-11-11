@@ -1,7 +1,7 @@
 import json
 
-from django.http import HttpResponse
-from django.template import loader
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
 from .models import Card
 
@@ -11,12 +11,11 @@ from .models import Card
 def list(request):
     with open('../commons/cards_list.json') as json_file:
         data = json.load(json_file)['data']
-        value = [row[18] for row in data][0]
-        card = Card(image=value)
-        template = loader.get_template("list/index.html")
-        context = {"card": card}
-        return HttpResponse(template.render(context, request))
-        # paginator = Paginator(value, request.GET.get("size"))
-        # pg_number = request.GET.get("page")
-        # pg = paginator.get_page(pg_number)
-        # return render(request, "list.html", {"pg_obj": pg})
+        values = [row[18] for row in data]
+        card_list = []
+        for value in values:
+            card_list.append(Card(image=value))
+        paginator = Paginator(card_list, request.GET.get("size"))
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        return render(request, "list/index.html", {"page_obj": page_obj})
