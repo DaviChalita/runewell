@@ -15,7 +15,7 @@ def list(request):
         card_list = []
         for value in values:
             card_list.append(Card(image=value))
-        paginator = Paginator(card_list, request.GET.get("size"))
+        paginator = Paginator(card_list, 60)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         return render(request, "list/index.html", {"page_obj": page_obj})
