@@ -11,7 +11,11 @@ def list(request):
         order_request = None
     order = 'name' if order_request is None else order_request
     direction = '' if request.GET.get("dir") is None or request.GET.get("dir") == 'asc' else '-'
-    card_list = Card.objects.all().order_by(f"{direction}{order}")
+    card_name = request.GET.get("name")
+    if card_name is not None and card_name != '' and not card_name.isspace():
+        card_list = Card.objects.filter(name__icontains=card_name).order_by(f"{direction}{order}")
+    else:
+        card_list = Card.objects.all().order_by(f"{direction}{order}")
     paginator = Paginator(card_list, 60)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
