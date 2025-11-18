@@ -41,7 +41,7 @@ MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
-    'list.apps.ListConfig',
+    'card.apps.CardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
