@@ -5,7 +5,7 @@ from .commons.Enums import OrderBy
 from .models import Card
 
 
-def list(request):
+def search(request):
     order_request = request.GET.get("order")
     if order_request not in [order_by.value for order_by in OrderBy]:
         order_request = None
@@ -19,4 +19,9 @@ def list(request):
     paginator = Paginator(card_list, 60)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, "list/index.html", {"page_obj": page_obj})
+    return render(request, "search/search.html", {"page_obj": page_obj})
+
+def details(request, card_id=0):
+    # todo tratar caso de id = 0
+    card = Card.objects.filter(id=card_id).first()
+    return render(request, "details/details.html",{"card":card})
