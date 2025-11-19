@@ -41,6 +41,7 @@ MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
+    'mathfilters',
     'card.apps.CardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
