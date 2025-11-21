@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load mathfilters %}
+{% load static %}
+<script src="{% static 'search.js' %}"></script>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -52,39 +54,27 @@
 	<div class="pagination-and-sort-bg">
 		<div class="pagination-and-sort">
 			<div class="filter">
-				<select>
-					<option>Cards</option>
-					<option>All prints</option>
-					<option>Unique art</option>
-				</select>
-				as
-				<select>
-					<option>Images</option>
-					<option>Checklist</option>
-					<option>Text only</option>
-					<option>Full</option>
-				</select>
-                sorted by
-                <select onchange="location = this.value;">
-                    <option value="?page={{ page_obj.number }}&order=name">Name</option>
-                    <option value="?page={{ page_obj.number }}&order=color">Color</option>
-                    <option value="?page={{ page_obj.number }}&order=cost">Cost</option>
-                    <option value="?page={{ page_obj.number }}&order=type">Type</option>
-                    <option value="?page={{ page_obj.number }}&order=might">Might</option>
-                    <option value="?page={{ page_obj.number }}&order=set_name">Set</option>
-                    <option value="?page={{ page_obj.number }}&order=rarity">Rarity</option>
+                Sorted by
+                <select id="order_id_header" value="">
+                    <option value="name">Name</option>
+                    <option value="color">Color</option>
+                    <option value="cost">Cost</option>
+                    <option value="type">Type</option>
+                    <option value="might">Might</option>
+                    <option value="set_name">Set</option>
+                    <option value="rarity">Rarity</option>
                 </select>
                 :
-                <select onchange="location = this.value;">
-                    <option value="?page={{ page_obj.number }}&dir=asc">Asc</option>
-                    <option value="?page={{ page_obj.number }}&dir=desc">Desc</option>
+                <select id="dir_id_header" value="">
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
                 </select>
 			</div>
 			<div class="pagination">
-                <a {% if page_obj.has_previous %} href="?page=1" {% endif %} {% if page_obj.has_previous %}disabled{% endif %} class="pagination-button">«</a>
-                <a {% if page_obj.has_previous %} href="?page={{ page_obj.previous_page_number }}" {% endif %} {% if page_obj.has_previous %}disabled{% endif %} class="pagination-button">ᐸ Previous</a>
-                <a {% if page_obj.has_next %} href="?page={{ page_obj.next_page_number }}" {% endif %} {% if page_obj.has_previous %}disabled{% endif %} class="pagination-button">Next 60 ᐳ</a>
-                <a {% if page_obj.has_next %} href="?page={{ page_obj.paginator.num_pages }}" {% endif %} {% if page_obj.has_previous %}disabled{% endif %} class="pagination-button">»</a>
+                <button {% if page_obj.has_previous %} onClick="pageNavigate('1')" href="?page=1" {% endif %} {% if not page_obj.has_previous %}disabled{% endif %} class="pagination-button">«</button>
+                <button {% if page_obj.has_previous %} onClick="pageNavigate('{{ page_obj.previous_page_number }}')" href="?page={{ page_obj.previous_page_number }}" {% endif %} {% if not page_obj.has_previous %}disabled{% endif %} class="pagination-button">ᐸ Previous</button>
+                <button {% if page_obj.has_next %} onClick="pageNavigate('{{ page_obj.next_page_number }}')" href="?page={{ page_obj.next_page_number }}" {% endif %} {% if not page_obj.has_next %}disabled{% endif %} class="pagination-button">Next 60 ᐳ</button>
+                <button {% if page_obj.has_next %} onClick="pageNavigate('{{ page_obj.paginator.num_pages }}')" href="?page={{ page_obj.paginator.num_pages }}" {% endif %} {% if not page_obj.has_next %}disabled{% endif %} class="pagination-button">»</button>
 			</div>
 		</div>
 	</div>
@@ -98,6 +88,33 @@
 		    <img width="63" height="88" class="card" src="{{ card.image }}" />
         {% endfor %}
 	</main>
+	<div class="pagination-and-sort-bg">
+		<div class="pagination-and-sort">
+			<div class="filter">
+                Sorted by
+                <select id="order_id_footer" value="">
+                    <option value="name">Name</option>
+                    <option value="color">Color</option>
+                    <option value="cost">Cost</option>
+                    <option value="type">Type</option>
+                    <option value="might">Might</option>
+                    <option value="set_name">Set</option>
+                    <option value="rarity">Rarity</option>
+                </select>
+                :
+                <select id="dir_id_footer" value="">
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+                </select>
+			</div>
+			<div class="pagination">
+                <button {% if page_obj.has_previous %} onClick="pageNavigate('1')" href="?page=1" {% endif %} {% if not page_obj.has_previous %}disabled{% endif %} class="pagination-button">«</button>
+                <button {% if page_obj.has_previous %} onClick="pageNavigate('{{ page_obj.previous_page_number }}')" href="?page={{ page_obj.previous_page_number }}" {% endif %} {% if not page_obj.has_previous %}disabled{% endif %} class="pagination-button">ᐸ Previous</button>
+                <button {% if page_obj.has_next %} onClick="pageNavigate('{{ page_obj.next_page_number }}')" href="?page={{ page_obj.next_page_number }}" {% endif %} {% if not page_obj.has_next %}disabled{% endif %} class="pagination-button">Next 60 ᐳ</button>
+                <button {% if page_obj.has_next %} onClick="pageNavigate('{{ page_obj.paginator.num_pages }}')" href="?page={{ page_obj.paginator.num_pages }}" {% endif %} {% if not page_obj.has_next %}disabled{% endif %} class="pagination-button">»</button>
+			</div>
+		</div>
+	</div>
 </body>
 <style>
 /* Reset preset taken from https://keithjgrant.com/posts/2024/01/my-css-resets/ */
@@ -244,6 +261,8 @@ body {
 	width: 100%;
 	height: auto;
 	object-fit: contain;
+	border-radius: 4.75% / 3.5%;
+	box-shadow: 1px 1px 6px #00000073;
 }
 .pagination-button {
 	color: #40197e;
@@ -251,6 +270,11 @@ body {
 	padding: 4px 8px;
 	border-radius: 5px;
 	cursor: pointer;
+}
+.pagination-button:disabled {
+    cursor:not-allowed;
+    border-color:#00000040;
+    color:#00000040;
 }
 </style>
 </html>
