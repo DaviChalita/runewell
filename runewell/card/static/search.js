@@ -22,7 +22,7 @@ function setUpSelectorChangeHandler(id, searchParamName, changeHandler){
     const sortSelector = document.getElementById(id);
     const param = new URLSearchParams(location.search);
     const searchParamValue = param.get(searchParamName);
-    sortSelector.value = searchParamValue;
+    sortSelector.value = searchParamValue || sortSelector.options[0].value;
     sortSelector.addEventListener("change", changeHandler);
 }
 
@@ -33,4 +33,4 @@ function startUp(){
     setUpSelectorChangeHandler("dir_id_footer", "dir", updateSortDir);
 }
 
-window.onload = startUp;
+document.addEventListener("DOMContentLoaded", startUp);
