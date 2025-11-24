@@ -1,8 +1,8 @@
 from django.urls import path
 
-from . import views
+from .views import search, details
 
 urlpatterns = [
-    path("card/search", views.search, name="search"),
-    path("card/<int:card_id>/", views.details),
+    path("card/search", search.search_list, name="search"),
+    path("card/<int:card_id>/", details.card_details),
 ]

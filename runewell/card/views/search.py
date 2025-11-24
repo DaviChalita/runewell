@@ -1,11 +1,11 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from .commons.Enums import OrderBy
-from .models import Card
+from ..commons.Enums import OrderBy
+from ..models import Card
 
 
-def search(request):
+def search_list(request):
     order_request = request.GET.get("order")
     if order_request not in [order_by.value for order_by in OrderBy]:
         order_request = None
@@ -20,8 +20,3 @@ def search(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, "search/search.html", {"page_obj": page_obj})
-
-def details(request, card_id=0):
-    # todo tratar caso de id = 0
-    card = Card.objects.filter(id=card_id).first()
-    return render(request, "details/details.html",{"card":card})
