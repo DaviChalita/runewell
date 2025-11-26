@@ -19,4 +19,4 @@ def search_list(request):
     paginator = Paginator(card_list, 60)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, "search/search.html", {"page_obj": page_obj})
+    return render(request, "list/list.html", {"page_obj": page_obj})
