@@ -16,6 +16,8 @@ def search_list(request):
         card_list = Card.objects.filter(name__icontains=card_name).order_by(f"{direction}{order}")
     else:
         card_list = Card.objects.all().order_by(f"{direction}{order}")
+    if card_list.count() == 1:
+        return render(request, "details/details.html", {"card": card_list.first()})
     paginator = Paginator(card_list, 60)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
