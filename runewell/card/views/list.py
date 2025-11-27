@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from ..commons.Enums import OrderBy
+from ..commons.order_by_enum import OrderBy
 from ..models import Card
 
 
