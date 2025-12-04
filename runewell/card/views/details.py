@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from ..models import Card
+from ..models.card import Card
 
 
 def card_details(request, card_id=0):
