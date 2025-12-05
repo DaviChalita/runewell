@@ -6,19 +6,15 @@ from ..models.card import Card
 
 
 def search_list(request):
-    order_request = request.GET.get("order")
-    if order_request not in [order_by.value for order_by in OrderBy]:
-        order_request = None
-    order = 'name' if order_request is None else order_request
-    direction = '' if request.GET.get("dir") is None or request.GET.get("dir") == 'asc' else '-'
-    data = request.POST.get('data')
+    if request.method != 'GET':
+        return render("non_success_cases/method_not_allowed.html")
 
-    card_name = data['name']
-    card_effect = data['effect']
-    card_type = data['type']
-    card_colors = data['colors']
-    card_sets = data['sets']
-    card_rarities = data['rarities']
+    card_name = request.GET.get("name")
+    card_effect = request.GET.get('effect')
+    card_type = request.GET.get('type')
+    card_colors = request.GET.get('colors')
+    card_sets = request.GET.get('sets')
+    card_rarities = request.GET.get('rarities')
 
     filters = {}
 
@@ -29,12 +25,18 @@ def search_list(request):
     if card_type is not None and card_type != '' and not card_type.isspace():
         filters['type__in'] = card_type
     if card_colors is not None and card_colors != '' and not card_colors.isspace():
-        filters['color__in'] = card_colors
+        filters['color__overlap'] = [card_colors]
     if card_sets is not None and card_sets != '' and not card_sets.isspace():
         filters['set_name__in'] = card_sets
+    #todo: testar multiplas raridades
     if card_rarities is not None and card_rarities != '' and not card_rarities.isspace():
         filters['rarity__in'] = card_rarities
 
+    order_request = request.GET.get("order")
+    if order_request not in [order_by.value for order_by in OrderBy]:
+        order_request = None
+    order = 'name' if order_request is None else order_request
+    direction = '' if request.GET.get("dir") is None or request.GET.get("dir") == 'asc' else '-'
     card_list = Card.objects.filter(**filters).order_by(f"{direction}{order}")
 
     if card_list.count() == 1:
