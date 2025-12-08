@@ -1,19 +1,31 @@
-<img src="{{ card.image }}" alt="img" width="300" height="300"><br>
-<div class="info">
-    <span class="">
-        <br>Name<br>
-        {{ card.name }}
-        <br>Cost<br>
-        {{ card.cost }}
-        <br>Type<br>
-        {{ card.type }}
-        <br>Effect<br>
-        {{ card.effect }}
-        <br>Set<br>
-        {{ card.set_name }}
-        <br>Rarity<br>
-        {{ card.rarity }}
-        <br>Might<br>
-        {{ card.might }}
-    </span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runewell</title>
+    <link rel="stylesheet" href="../../static/styles/styles.css">
+</head>
+<body>
+    {% include "bases/header.html" %}
+<main>
+    <div class="card-details">
+        <div class="card-details-description">
+            <div class="card-details-description-section">{{ card.name }} {{ card.cost }}</div>
+            <div class="card-details-description-section">{{ card.type }}</div>
+            <div class="card-details-description-section">{{ card.effect }}</div>
+            {% if card.might %}
+            <div class="card-details-description-section">
+                {{ card.might }}
+            </div>
+            {% else %} {% endif %}
+        </div>
+        <div class="card-details-other"></div>
+        <div class="card-details-other"></div>
+    </div>
+    <div class="card-container">
+        <div class="card"><img src="{{ card.image }}" width="100%" height="100%"/></div>
+    </div>
+</main>
+</body>
+</html>
