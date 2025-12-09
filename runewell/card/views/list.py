@@ -12,9 +12,9 @@ def search_list(request):
     card_name = request.GET.get("name")
     card_effect = request.GET.get('effect')
     card_type = request.GET.get('type')
-    card_colors = request.GET.get('colors')
-    card_sets = request.GET.get('sets')
-    card_rarities = request.GET.get('rarities')
+    card_colors = request.GET.getlist('colors')
+    card_sets = request.GET.getlist('sets')
+    card_rarities = request.GET.getlist('rarities')
 
     filters = {}
 
@@ -24,12 +24,11 @@ def search_list(request):
         filters['effect__icontains'] = card_effect
     if card_type is not None and card_type != '' and not card_type.isspace():
         filters['type__in'] = card_type
-    if card_colors is not None and card_colors != '' and not card_colors.isspace():
-        filters['color__overlap'] = [card_colors]
-    if card_sets is not None and card_sets != '' and not card_sets.isspace():
+    if card_colors is not None and card_colors:
+        filters['color__contains'] = card_colors
+    if card_sets is not None and card_sets:
         filters['set_name__in'] = card_sets
-    #todo: testar multiplas raridades
-    if card_rarities is not None and card_rarities != '' and not card_rarities.isspace():
+    if card_rarities is not None and card_rarities:
         filters['rarity__in'] = card_rarities
 
     order_request = request.GET.get("order")
@@ -46,4 +45,3 @@ def search_list(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, "list/list.html", {"page_obj": page_obj})
-
