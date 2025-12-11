@@ -5,6 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-
+<form>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text">
+    <label for="effect">Effect</label>
+    <input id="effect" name="effect" type="text">
+    <label for="type">Type</label>
+    <select name="type">
+        {% for type in dict['types'] %}
+        <option value="{{ type }}">{{ type.capitalize() }}</option>
+        {% endfor %}
+    </select>
+    <input type="checkbox" value="Body">
+    <input type="checkbox" value="Calm">
+    <input type="checkbox" value="Chaos">
+    <input type="checkbox" value="Fury">
+    <input type="checkbox" value="Mind">
+    <input type="checkbox" value="Order">
+    <input type="checkbox" value="Colorless">
+    <label for="set">Set</label>
+        <select name="set">
+            {% for set in dict['sets'] %}
+            <option value="{{ set }}">{{ set }}</option>
+            {% endfor %}
+        </select>
+    <input type="submit" value="Search with these options">
+</form>
 </body>
 </html>
