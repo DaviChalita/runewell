@@ -2,33 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runewell</title>
+    <link rel="stylesheet" href="../../static/styles/styles.css">
 </head>
 <body>
-<form>
+{% include "bases/header.html" %}
+<form action="/card/list">
     <label for="name">Name</label>
     <input id="name" name="name" type="text">
+    <br>
     <label for="effect">Effect</label>
     <input id="effect" name="effect" type="text">
+    <br>
     <label for="type">Type</label>
-    <select name="type">
-        {% for type in dict['types'] %}
-        <option value="{{ type }}">{{ type.capitalize() }}</option>
+    <select name="type" multiple>
+        {% for type in types %}
+        <option value="{{ type }}">{{ type|capfirst }}</option>
         {% endfor %}
     </select>
-    <input type="checkbox" value="Body">
-    <input type="checkbox" value="Calm">
-    <input type="checkbox" value="Chaos">
-    <input type="checkbox" value="Fury">
-    <input type="checkbox" value="Mind">
-    <input type="checkbox" value="Order">
-    <input type="checkbox" value="Colorless">
+    <br>
+    <label><input type="checkbox" value="Body"><img src="">Body</label>
+    <label><input type="checkbox" value="Calm">Calm</label>
+    <label><input type="checkbox" value="Chaos">Chaos</label>
+    <label><input type="checkbox" value="Fury">Fury</label>
+    <label><input type="checkbox" value="Mind">Mind</label>
+    <label><input type="checkbox" value="Order">Order</label>
+    <label><input type="checkbox" value="Colorless">Colorless</label>
+    <br>
     <label for="set">Set</label>
         <select name="set">
-            {% for set in dict['sets'] %}
-            <option value="{{ set }}">{{ set }}</option>
+            {% for set in sets %}
+            <option value="{{ set }}">{{ set|capfirst }}</option>
             {% endfor %}
         </select>
+    <br>
     <input type="submit" value="Search with these options">
 </form>
 </body>
