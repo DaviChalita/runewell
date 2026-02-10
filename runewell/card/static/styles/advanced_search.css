@@ -1,93 +1,51 @@
-/* ===== Page base ===== */
-body {
-  background: #f6f7f8;
-  color: #222;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+/* ==============================
+   Advanced Search – layout base
+   ============================== */
+
+.advanced-search-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
 }
 
-/* ===== Container ===== */
-.advanced-container {
-  max-width: 760px;
-  margin: 3rem auto;
-  padding: 0 1rem;
+.advanced-search-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 24px;
 }
 
-/* ===== Form card ===== */
-.advanced-form {
-  background: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.08);
-  overflow: hidden;
+/* ==============================
+   Form
+   ============================== */
+
+.advanced-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-/* ===== Filter rows ===== */
-.filter-group {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid #e6e6e6;
+/* ==============================
+   Field groups
+   ============================== */
+
+.advanced-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-.filter-group:last-child {
-  border-bottom: none;
+.advanced-field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ddd;
 }
 
-/* ===== Labels ===== */
-.filter-group label {
-  font-weight: 600;
-  font-size: .9rem;
-  color: #333;
-}
+/* ==============================
+   Inputs / Selects
+   ============================== */
 
-/* ===== Inputs ===== */
-.advanced-form input[type="text"],
-.advanced-form select {
-  width: 100%;
-  padding: .45rem .5rem;
-  font-size: .9rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* ===== Effect help text ===== */
-.help-text {
-  font-size: .8rem;
-  color: #666;
-  margin-top: .25rem;
-}
-
-/* ===== Domains ===== */
-.domains {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem 1.25rem;
-}
-
-.domains label {
-  font-weight: 500;
-  font-size: .85rem;
-  cursor: pointer;
-}
-
-/* ===== Button row ===== */
-.form-actions {
-  background: #f1f3f5;
-  padding: .9rem 1.25rem;
-  text-align: right;
-}
-
-/* ===== Button ===== */
-.form-actions button {
-  background: #5b5fc7;
-  color: #fff;
-  border: none;
-  padding: .45rem .9rem;
-  font-size: .85rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.form-actions button:hover {
-  background: #4a4eb3;
-}
+.advanced-field-group input,
+.advanced-field-group select {
+    height: 36px;
+    padding: 6px 10px;
+    background-color: #1f1f1

@@ -1,18 +1,21 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Search · Riftbound</title>
-    <link rel="stylesheet" href="../../static/styles/advanced_search.css">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'styles/advanced_search.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
 
+</head>
+<body class="body">
 <!-- HEADER -->
 {% include "bases/header.html" %}
 <main class="advanced-container">
-    <form method="get" action="/card/list/" class="advanced-form">
+    <form method="get" action="/card/list" class="advanced-form">
 
         <div class="filter-group">
             <label for="name">Card Name</label>
@@ -57,29 +60,6 @@
 
     </form>
 </main>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-col">
-            <strong>Riftbound</strong>
-            <a href="#">Advanced Search</a>
-            <a href="#">All Cards</a>
-        </div>
-
-        <div class="footer-col">
-            <strong>Developers</strong>
-            <a href="#">API</a>
-            <a href="#">Documentation</a>
-        </div>
-
-        <div class="footer-col">
-            <strong>More</strong>
-            <a href="#">About</a>
-            <a href="#">GitHub</a>
-        </div>
-    </div>
-</footer>
-
+{% include "bases/footer.html" %}
 </body>
 </html>
