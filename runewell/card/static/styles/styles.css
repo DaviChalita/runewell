@@ -25,14 +25,63 @@ h6 {
   margin: 0;
   font-weight: 600;
 }
+
 .cards {
-  display: grid; /* sempre 4 colunas */
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 24px;
   max-width: 1000px;
-  padding: 12px;
+  padding: 24px;
   margin: 20px auto;
 }
+
+.cards a {
+  display: flex;
+  justify-content: center;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Quando for carta horizontal */
+.card.landscape img {
+    transform: rotate(90deg);
+    max-width: none;
+    max-height: none;
+    height: 100%;
+    width: auto;
+}
+
+.card-wrapper {
+  width: 220px;
+  aspect-ratio: 63 / 88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: center center;
+}
+
+/* carta normal */
+.card.normal {
+  transform: rotate(0deg) scale(1);
+}
+
+/* Carta horizontal */
+.card.landscape {
+  transform: rotate(90deg) scale(1.397);
+}
+
+
 p {
   margin: 0;
 } /* ============================== Forms ============================== */
@@ -73,4 +122,90 @@ canvas {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.pagination-and-sort-bg {
+  background: #f3f2f7;
+  border-bottom: 1px solid #ddd;
+}
+
+.pagination-and-sort {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.filter select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #c8c3d1;
+  background: white;
+  font-size: 14px;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #c8c3d1;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: #eee;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Destacar botão Next */
+.pagination-button:nth-child(3) {
+  border: 1px solid #7a5bd6;
+  color: #7a5bd6;
+  font-weight: 500;
+}
+
+.pagination-button:nth-child(3):hover:not(:disabled) {
+  background: #f3efff;
+}
+
+.description-bg {
+  background: #f3f2f7;
+  border-bottom: 1px solid #ddd;
+}
+
+.description {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+
+  font-size: 15px;
+  color: #444;
+}
+
+.highlighted-text {
+  background: none;
+  padding: 0;
+  font-weight: 500;
+  color: #6b46c1; /* roxinho estilo scryfall */
 }

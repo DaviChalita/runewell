@@ -64,7 +64,9 @@
 <main class="cards">
     {% for card in page_obj %}
     <a href="{% url 'card_detail' card.id %}">
-        <img width="63" height="88" class="card" src="{{ card.image }}"/>
+        <div class="card-wrapper">
+            <img class="card" src="{{ card.image }}"/>
+        </div>
     </a>
     {% endfor %}
 </main>

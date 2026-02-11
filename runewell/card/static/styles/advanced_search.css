@@ -1,51 +1,103 @@
 /* ==============================
-   Advanced Search – layout base
+   Advanced Search Layout
    ============================== */
 
-.advanced-search-page {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 32px 24px;
+.advanced-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 24px;
 }
 
-.advanced-search-title {
-    font-size: 22px;
+.advanced-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* ==============================
+   Field Groups
+   ============================== */
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 14px;
     font-weight: 600;
-    margin-bottom: 24px;
+    color: #333;
 }
 
 /* ==============================
-   Form
+   Inputs / Select
    ============================== */
 
-.advanced-search-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.filter-group input[type="text"],
+.filter-group select {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.filter-group input[type="text"]:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: #3f3d8f;
+    box-shadow: 0 0 0 2px rgba(63, 61, 143, 0.15);
 }
 
 /* ==============================
-   Field groups
+   Help text
    ============================== */
 
-.advanced-field-group {
+.help-text {
+    font-size: 12px;
+    color: #777;
+    margin-top: 4px;
+}
+
+/* ==============================
+   Domains (checkboxes)
+   ============================== */
+
+.domains {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.domains label {
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
     gap: 6px;
 }
 
-.advanced-field-group label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #ddd;
-}
-
 /* ==============================
-   Inputs / Selects
+   Button
    ============================== */
 
-.advanced-field-group input,
-.advanced-field-group select {
-    height: 36px;
-    padding: 6px 10px;
-    background-color: #1f1f1
+.form-actions {
+    margin-top: 10px;
+}
+
+.form-actions button {
+    background-color: #3f3d8f;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-actions button:hover {
+    background-color: #2f2d70;
+}
