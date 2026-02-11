@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Runewell · Card Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'styles/home_search.css' %}">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            Runewell is a powerful
+            <strong>card search</strong>
+            engine
+        </h1>
+
+        <form method="get" action="/card/list" class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+                    type="text"
+                    name="name"
+                    placeholder="Search cards…"
+                    autocomplete="off"
+            >
+        </form>
+        <div class="hero-actions">
+            <a href="/card/advanced" class="hero-btn">Advanced Search</a>
+            <a href="#" class="hero-btn">Syntax Guide</a>
+            <a href="#" class="hero-btn">All Sets</a>
+            <a href="#" class="hero-btn">Random Card</a>
+        </div>
+
+        <ul class="hero-news">
+            <li><span class="tag pre">PRE-NEW</span> Teenage Mutant Ninja Turtles</li>
+            <li><span class="tag new">NEW</span> Lorwyn Eclipsed</li>
+            <li><span class="tag new">NEW</span> Lorwyn Eclipsed Commander</li>
+            <li><span class="tag new">NEW</span> Lorwyn Eclipsed Special Guests</li>
+        </ul>
+    </div>
+
+    <div class="hero-cards">
+        <img src="card1.jpg" alt="">
+        <img src="card2.jpg" alt="">
+        <img src="card3.jpg" alt="">
+        <img src="card4.jpg" alt="">
+        <img src="card5.jpg" alt="">
+    </div>
+</section>
+
+</body>
+</html>

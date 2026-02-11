@@ -1,31 +1,60 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Runewell</title>
-    <link rel="stylesheet" href="../../static/styles/styles.css">
+    <title>{{ card.name }} · Runewell</title>
+
+    <!-- Base reset + layout geral -->
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <!-- Header -->
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+    <!-- (opcional) footer.css se você separou -->
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
 </head>
-<body>
+
+<body class="body">
     {% include "bases/header.html" %}
-<main>
-    <div class="card-details">
-        <div class="card-details-description">
-            <div class="card-details-description-section">{{ card.name }} {{ card.cost }}</div>
-            <div class="card-details-description-section">{{ card.type }}</div>
-            <div class="card-details-description-section">{{ card.effect }}</div>
-            {% if card.might %}
-            <div class="card-details-description-section">
-                {{ card.might }}
+
+    <main>
+        <div class="card-details">
+            <div class="card-details-description">
+                <div class="card-details-description-section card-details-description-section--big">
+                    {{ card.name }}
+                    {% if card.cost %}
+                        · {{ card.cost }}
+                    {% endif %}
+                </div>
+
+                <div class="card-details-description-section">
+                    {{ card.type }}
+                </div>
+
+                <div class="card-details-description-section">
+                    {{ card.effect }}
+                </div>
+
+                {% if card.might %}
+                <div class="card-details-description-section">
+                    Might: {{ card.might }}
+                </div>
+                {% endif %}
             </div>
-            {% else %} {% endif %}
+
+            <div class="card-details-other"></div>
+            <div class="card-details-other"></div>
         </div>
-        <div class="card-details-other"></div>
-        <div class="card-details-other"></div>
-    </div>
-    <div class="card-container">
-        <div class="card"><img src="{{ card.image }}" width="100%" height="100%"/></div>
-    </div>
-</main>
+
+        <div class="card-container">
+            <img
+                class="card"
+                src="{{ card.image }}"
+                alt="{{ card.name }}"
+            />
+        </div>
+    </main>
+
+    {% include "bases/footer.html" %}
 </body>
 </html>

@@ -7,8 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Runewell</title>
-    <link rel="stylesheet" href="../../static/styles/styles.css">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <script src="{% static 'list.js' %}" defer></script>
 </head>
+
 <body class="body">
 {% include "bases/header.html" %}
 <div class="pagination-and-sort-bg">
@@ -59,7 +63,11 @@
 </div>
 <main class="cards">
     {% for card in page_obj %}
-    <img width="63" height="88" class="card" src="{{ card.image }}"/>
+    <a href="{% url 'card_detail' card.id %}">
+        <div class="card-wrapper">
+            <img class="card" src="{{ card.image }}"/>
+        </div>
+    </a>
     {% endfor %}
 </main>
 <div class="pagination-and-sort-bg">
@@ -100,5 +108,6 @@
         </div>
     </div>
 </div>
+{% include "bases/footer.html" %}
 </body>
 </html>

@@ -1,23 +1,46 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from ..commons.Enums import OrderBy
-from ..models import Card
+from ..commons.order_by_enum import OrderBy
+from ..models.card import Card
 
 
 def search_list(request):
+    if request.method != 'GET':
+        return render("non_success_cases/method_not_allowed.html")
+
+    card_name = request.GET.get("name")
+    card_effect = request.GET.get('effect')
+    card_type = request.GET.getlist('type')
+    card_colors = request.GET.getlist('colors')
+    card_sets = request.GET.getlist('sets')
+    card_rarities = request.GET.getlist('rarities')
+
+    filters = {}
+
+    if card_name is not None and card_name != '' and not card_name.isspace():
+        filters['name__icontains'] = card_name
+    if card_effect is not None and card_effect != '' and not card_name.isspace():
+        filters['effect__icontains'] = card_effect
+    if card_type is not None and card_type:
+        filters['type__in'] = card_type
+    if card_colors is not None and card_colors:
+        filters['color__contains'] = card_colors
+    if card_sets is not None and card_sets:
+        filters['set_name__in'] = card_sets
+    if card_rarities is not None and card_rarities:
+        filters['rarity__in'] = card_rarities
+
     order_request = request.GET.get("order")
     if order_request not in [order_by.value for order_by in OrderBy]:
         order_request = None
     order = 'name' if order_request is None else order_request
     direction = '' if request.GET.get("dir") is None or request.GET.get("dir") == 'asc' else '-'
-    card_name = request.GET.get("name")
-    if card_name is not None and card_name != '' and not card_name.isspace():
-        card_list = Card.objects.filter(name__icontains=card_name).order_by(f"{direction}{order}")
-    else:
-        card_list = Card.objects.all().order_by(f"{direction}{order}")
+    card_list = Card.objects.filter(**filters).order_by(f"{direction}{order}")
+
     if card_list.count() == 1:
         return render(request, "details/details.html", {"card": card_list.first()})
+
     paginator = Paginator(card_list, 60)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
