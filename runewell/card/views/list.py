@@ -38,6 +38,9 @@ def search_list(request):
     direction = '' if request.GET.get("dir") is None or request.GET.get("dir") == 'asc' else '-'
     card_list = Card.objects.filter(**filters).order_by(f"{direction}{order}")
 
+    if card_list.count() == 0:
+        return render(request, "list/no_results.html")
+
     if card_list.count() == 1:
         return render(request, "details/details.html", {"card": card_list.first()})
 

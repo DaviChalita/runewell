@@ -1,0 +1,75 @@
+.card-detail-page {
+  padding: 60px 40px;
+}
+
+.card-detail-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Carta */
+.card-detail-image img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Painel de informações */
+.card-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Blocos */
+.card-section {
+  background: white;
+  padding: 22px 26px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.card-section--title {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.card-section--title h1 {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-cost {
+  font-weight: 400;
+  color: #666;
+  font-size: 18px;
+}
+
+.card-type {
+  font-weight: 500;
+  color: #444;
+}
+
+.card-section--text {
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .card-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .card-detail-image {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
