@@ -1,55 +1,15 @@
 <div class="header-bg">
     <header class="header">
-        <img width="32" height="25"
-             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZSotaj1kR42FnNHIi5Vraa-8r9YkzN92DKg&s"/>
-        <input class="search-input" placeholder="Search for magic cards..."/>
+        <form method="get" action="{% url 'list' %}" class="search-box">
+            <input type="text"
+                   name="name"
+                   class="search-input"
+                   placeholder="Search for Riftbound cards..."/>
+        </form>
         <nav class="nav">
-            <a class="nav-link" href="#">
-                <svg width="16" height="16" viewBox="0 0 30 30" aria-hidden="true" focusable="false"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                </svg>
+            <a class="nav-link" href="{% url 'card_advanced' %}">
                 <div>Advanced</div>
             </a>
-            <a class="nav-link" href="#">
-                <svg width="16" height="16" viewBox="0 0 30 30" aria-hidden="true" focusable="false"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                </svg>
-                <div>Syntax</div>
-            </a>
-            <a class="nav-link" href="#">
-                <svg width="16" height="16" viewBox="0 0 30 30" aria-hidden="true" focusable="false"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                </svg>
-                <div>Sets</div>
-            </a>
-            <a class="nav-link" href="#">
-                <svg width="16" height="16" viewBox="0 0 30 30" aria-hidden="true" focusable="false"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                    <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                </svg>
-                <div>Random</div>
-            </a>
         </nav>
-        <button class="header-button">
-            <svg width="16" height="16" viewBox="0 0 30 30" aria-hidden="true" focusable="false"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-            </svg>
-        </button>
-        <button class="header-button">
-            <svg width="16" height="16" viewBox="0 0 30 30" aria-hidden="true" focusable="false"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-                <path d="M10 6h-4v2h4v-2zm14 0h-12v2h12v-2zm-22-4v26h26v-26h-26zm24 24h-22v-14h22v14zm0-16h-22v-6h22v6z"></path>
-            </svg>
-        </button>
     </header>
 </div>
