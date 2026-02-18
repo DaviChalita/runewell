@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No Results</title>
+
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/no_results.css' %}">
+</head>
+
+<body>
+
+    {% include "bases/header.html" %}
+
+    <main class="no-results-page">
+        <div class="no-results-box">
+
+            <h1>No cards found</h1>
+
+            <p>
+                Your search didn’t match any cards.
+                Try adjusting your filters or refining your query.
+            </p>
+
+            <div class="no-results-actions">
+                <a href="{% url 'card_advanced' %}" class="primary-btn">
+                    Advanced Search
+                </a>
+
+                <a href="javascript:history.back()" class="secondary-btn">
+                    Go Back
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    {% include "bases/footer.html" %}
+
+</body>
+</html>

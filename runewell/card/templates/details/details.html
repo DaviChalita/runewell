@@ -12,48 +12,57 @@
     <link rel="stylesheet" href="{% static 'styles/header.css' %}">
     <!-- (opcional) footer.css se você separou -->
     <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/card_detail.css' %}">
+
 </head>
 
 <body class="body">
     {% include "bases/header.html" %}
 
-    <main>
-        <div class="card-details">
-            <div class="card-details-description">
-                <div class="card-details-description-section card-details-description-section--big">
-                    {{ card.name }}
-                    {% if card.cost %}
-                        · {{ card.cost }}
-                    {% endif %}
-                </div>
+ <main class="card-detail-page">
+    <div class="card-detail-layout">
 
-                <div class="card-details-description-section">
-                    {{ card.type }}
-                </div>
-
-                <div class="card-details-description-section">
-                    {{ card.effect }}
-                </div>
-
-                {% if card.might %}
-                <div class="card-details-description-section">
-                    Might: {{ card.might }}
-                </div>
-                {% endif %}
-            </div>
-
-            <div class="card-details-other"></div>
-            <div class="card-details-other"></div>
-        </div>
-
-        <div class="card-container">
+        <!-- Carta -->
+        <div class="card-detail-image">
             <img
-                class="card"
                 src="{{ card.image }}"
                 alt="{{ card.name }}"
             />
         </div>
-    </main>
+
+        <!-- Informações -->
+        <div class="card-detail-info">
+
+            <div class="card-section card-section--title">
+                <h1>
+                    {{ card.name }}
+                    {% if card.cost %}
+                        <span class="card-cost">· {{ card.cost }}</span>
+                    {% endif %}
+                </h1>
+            </div>
+
+            <div class="card-section">
+                <div class="card-type">
+                    {{ card.type }}
+                </div>
+            </div>
+
+            <div class="card-section card-section--text">
+                {{ card.effect }}
+            </div>
+
+            {% if card.might %}
+            <div class="card-section">
+                <strong>Might:</strong> {{ card.might }}
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+</main>
+
 
     {% include "bases/footer.html" %}
 </body>
