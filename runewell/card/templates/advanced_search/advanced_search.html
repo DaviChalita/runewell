@@ -15,7 +15,7 @@
 <!-- HEADER -->
 {% include "bases/header.html" %}
 <main class="advanced-container">
-    <form method="get" action="/card/list" class="advanced-form">
+    <form method="get" action="{% url 'list' %}" class="advanced-form">
 
         <div class="filter-group">
             <label for="name">Card Name</label>

@@ -19,7 +19,7 @@
             engine
         </h1>
 
-        <form method="get" action="/card/list" class="search-box">
+        <form method="get" action="{% url 'list' %}" class="search-box">
             <span class="search-icon">🔍</span>
             <input
                     type="text"
@@ -29,26 +29,9 @@
             >
         </form>
         <div class="hero-actions">
-            <a href="/card/advanced" class="hero-btn">Advanced Search</a>
-            <a href="#" class="hero-btn">Syntax Guide</a>
-            <a href="#" class="hero-btn">All Sets</a>
+            <a href="{% url 'card_advanced' %}" class="hero-btn">Advanced Search</a>
             <a href="#" class="hero-btn">Random Card</a>
         </div>
-
-        <ul class="hero-news">
-            <li><span class="tag pre">PRE-NEW</span> Teenage Mutant Ninja Turtles</li>
-            <li><span class="tag new">NEW</span> Lorwyn Eclipsed</li>
-            <li><span class="tag new">NEW</span> Lorwyn Eclipsed Commander</li>
-            <li><span class="tag new">NEW</span> Lorwyn Eclipsed Special Guests</li>
-        </ul>
-    </div>
-
-    <div class="hero-cards">
-        <img src="card1.jpg" alt="">
-        <img src="card2.jpg" alt="">
-        <img src="card3.jpg" alt="">
-        <img src="card4.jpg" alt="">
-        <img src="card5.jpg" alt="">
     </div>
 </section>
 
