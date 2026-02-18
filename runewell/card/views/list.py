@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import F
 from django.shortcuts import render
 
 from ..commons.order_by_enum import OrderBy
@@ -36,7 +37,10 @@ def search_list(request):
         order_request = None
     order = 'name' if order_request is None else order_request
     direction = '' if request.GET.get("dir") is None or request.GET.get("dir") == 'asc' else '-'
-    card_list = Card.objects.filter(**filters).order_by(f"{direction}{order}")
+
+    query = Card.objects.filter(**filters)
+    ordering = F(order).desc(nulls_last=True) if direction == '-' else F(order).asc()
+    card_list = query.order_by(ordering)
 
     if card_list.count() == 0:
         return render(request, "list/no_results.html")

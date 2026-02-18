@@ -162,11 +162,17 @@ canvas {
 .pagination-button {
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid #c8c3d1;
+  border: 1px solid #7a5bd6;
+  color: #7a5bd6;
+  font-weight: 500;
   background: white;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.15s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: #f3efff;
 }
 
 .pagination-button:hover:not(:disabled) {
@@ -176,17 +182,6 @@ canvas {
 .pagination-button:disabled {
   opacity: 0.5;
   cursor: default;
-}
-
-/* Destacar botão Next */
-.pagination-button:nth-child(3) {
-  border: 1px solid #7a5bd6;
-  color: #7a5bd6;
-  font-weight: 500;
-}
-
-.pagination-button:nth-child(3):hover:not(:disabled) {
-  background: #f3efff;
 }
 
 .description-bg {
