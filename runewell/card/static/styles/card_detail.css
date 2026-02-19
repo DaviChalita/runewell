@@ -61,6 +61,12 @@
   color: #555;
 }
 
+.card-section--text img {
+  display: inline;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
 /* Responsivo */
 @media (max-width: 900px) {
   .card-detail-layout {
