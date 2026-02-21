@@ -21,12 +21,12 @@ STATIC_URL = '/static'
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oh-6qpz)x*0i1m%o@*7c9)9zlu%6by*)kwptqw@i!2!d#j*e6z'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','54.233.182.0']
+ALLOWED_HOSTS = ['*']
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
