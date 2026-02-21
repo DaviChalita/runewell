@@ -5,7 +5,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - /home/ubuntu/runewell/runewell/.env
     environment:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
