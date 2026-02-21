@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout do código
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2️⃣ Configurar SSH
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -20,11 +22,13 @@ jobs:
           chmod 600 ~/.ssh/ec2.pem
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+      # 3️⃣ Deploy na EC2 com variáveis direto no shell
       - name: Deploy on EC2
         run: |
           ssh -i ~/.ssh/ec2.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
             set -e
 
+            # Clonar ou atualizar repositório
             if [ ! -d runewell ]; then
               git clone git@github.com:DaviChalita/runewell.git runewell
             fi
@@ -34,12 +38,14 @@ jobs:
             git checkout dev
             git pull origin dev
 
-            echo "DB_NAME=${{ secrets.DB_NAME }}" > .env
-            echo "DB_USER=${{ secrets.DB_USER }}" >> .env
-            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-            echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-            echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
-            echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+            # Exportar variáveis de ambiente para o shell
+            export DB_NAME='${{ secrets.DB_NAME }}'
+            export DB_USER='${{ secrets.DB_USER }}'
+            export DB_PASSWORD='${{ secrets.DB_PASSWORD }}'
+            export DB_HOST='${{ secrets.DB_HOST }}'
+            export DB_PORT='${{ secrets.DB_PORT }}'
+            export DJANGO_SECRET_KEY='${{ secrets.DJANGO_SECRET_KEY }}'
 
-            docker compose --env-file .env -f runewell/docker-compose.yml up -d --build
+            # Build e deploy com Docker Compose
+            docker compose -f runewell/docker-compose.yml up -d --build
           EOF
