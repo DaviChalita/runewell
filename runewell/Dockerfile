@@ -15,5 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD python manage.py collectstatic --noinput && \
-    gunicorn runewell.wsgi:application --bind 0.0.0.0:8000
+# collectstatic no build
+RUN python manage.py collectstatic --noinput
+
+CMD ["gunicorn", "runewell.wsgi:application", "--bind", "0.0.0.0:8000"]
