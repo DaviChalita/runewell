@@ -46,7 +46,11 @@ STATICFILES_DIRS = (
 
 WHITENOISE_USE_FINDERS = False
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MEDIA_ROOT = (
     BASE_DIR
