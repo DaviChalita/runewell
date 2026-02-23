@@ -1,8 +1,8 @@
+version: '3.8'
+
 services:
   web:
     build: .
-    ports:
-      - "8000:8000"
     environment:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
@@ -10,4 +10,20 @@ services:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+    volumes:
+      - static_volume:/app/staticfiles  # compartilha arquivos estáticos
     restart: always
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/app/staticfiles  # serve os estáticos
+    depends_on:
+      - web
+    restart: always
+
+volumes:
+  static_volume:
