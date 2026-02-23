@@ -20,7 +20,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -43,14 +42,6 @@ ALLOWED_HOSTS = ['*']
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
-WHITENOISE_USE_FINDERS = False
-
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 
 MEDIA_ROOT = (
     BASE_DIR
