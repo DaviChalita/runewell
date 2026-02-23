@@ -10,6 +10,7 @@ services:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DEBUG_MODE: ${DEBUG_MODE}
     volumes:
       - static_volume:/app/staticfiles  # compartilha arquivos estáticos
     restart: always
