@@ -36,7 +36,6 @@ jobs:
       - name: Docker Build Test
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: Dockerfile
+          context: runewell
+          file: runewell/Dockerfile
           push: false
-          load: true
