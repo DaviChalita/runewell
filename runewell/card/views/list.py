@@ -13,7 +13,7 @@ def search_list(request):
     card_name = request.GET.get("name")
     card_effect = request.GET.get('effect')
     card_type = request.GET.getlist('type')
-    card_colors = request.GET.getlist('colors')
+    card_colors = request.GET.getlist('domain')
     card_set = request.GET.get('set')
     card_rarities = request.GET.getlist('rarities')
 
