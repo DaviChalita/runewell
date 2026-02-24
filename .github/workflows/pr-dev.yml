@@ -23,10 +23,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r runewell/requirements.txt
 
       # 3️⃣ Testar se o Django consegue rodar o collectstatic e checar migrations
-      - name: Check Django
+      - name: Django checks
+        working-directory: runewell
         run: |
           python manage.py check
           python manage.py collectstatic --noinput
@@ -35,7 +36,6 @@ jobs:
       - name: Docker Build Test
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: Dockerfile
+          context: runewell
+          file: runewell/Dockerfile
           push: false
-          load: true
