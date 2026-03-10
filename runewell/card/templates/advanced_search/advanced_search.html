@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+<script src="{% static 'scripts/advanced_search_sets.js' %}"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,13 +52,21 @@
         </div>
 
         <div class="filter-group">
-            <label for="set">Set</label>
-            <select name="set" id="set">
-                <option value="">Any set</option>
-                {% for set in sets %}
-                <option value="{{ set }}">{{ set|capfirst }}</option>
-                {% endfor %}
-            </select>
+            <label>Sets</label>
+            <div class="multi-select" id="set-select">
+                <!-- selecionados -->
+                <div class="selected-sets" id="selectedSets"></div>
+                <!-- input -->
+                <input type="text" id="setSearch" placeholder="Search sets...">
+                <!-- dropdown -->
+                <div class="set-options" id="setOptions">
+                    {% for set in sets %}
+                    <div class="set-option" data-value="{{ set }}">
+                        {{ set|capfirst }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
         <div class="form-actions">
