@@ -14,7 +14,7 @@ def search_list(request):
     card_effect = request.GET.get('effect')
     card_type = request.GET.getlist('type')
     card_colors = request.GET.getlist('domain')
-    card_set = request.GET.get('set')
+    card_sets = request.GET.getlist('set')
     card_rarities = request.GET.getlist('rarities')
 
     filters = {}
@@ -27,8 +27,8 @@ def search_list(request):
         filters['type__in'] = card_type
     if card_colors is not None and card_colors:
         filters['color__contains'] = card_colors
-    if card_set is not None and card_set != '' and not card_set.isspace():
-        filters['set_name__icontains'] = card_set
+    if card_sets is not None and card_sets:
+        filters['set_name__in'] = card_sets
     if card_rarities is not None and card_rarities:
         filters['rarity__in'] = card_rarities
 
