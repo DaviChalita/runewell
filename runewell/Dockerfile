@@ -14,8 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Coleta de estáticos durante o build
-RUN python manage.py collectstatic --noinput
-
 # Comando para Gunicorn
 CMD ["gunicorn", "runewell.wsgi:application", "--bind", "0.0.0.0:8000"]
