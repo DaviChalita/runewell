@@ -14,16 +14,18 @@ services:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DEBUG_MODE: ${DEBUG_MODE}
     volumes:
-      - static_volume:/app/staticfiles  # compartilha arquivos estáticos
+      - static_volume:/app/staticfiles
     restart: always
 
   nginx:
     image: nginx:latest
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - static_volume:/app/staticfiles  # serve os estáticos
+      - static_volume:/app/staticfiles
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - web
     restart: always
