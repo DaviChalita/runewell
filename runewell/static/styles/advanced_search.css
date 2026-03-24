@@ -174,3 +174,89 @@
 .set-option.selected::after {
     content:" ✓";
 }
+
+.multi-select {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 6px;
+    background: white;
+}
+
+.multi-select input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 6px;
+}
+
+.selected-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.type-tag {
+    background: #ececec;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.type-tag img {
+    width: 16px;
+    height: 16px;
+}
+
+.type-tag button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.type-options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 100;
+}
+
+.type-option {
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.type-option img.type-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.type-option:hover {
+    background: #f5f5f5;
+}
+
+.type-option.selected {
+    background: #e6e6ff;
+    color: #3f3d8f;
+    font-weight: 600;
+    cursor: default;
+}
+
+.type-option.selected::after {
+    content: " ✓";
+}

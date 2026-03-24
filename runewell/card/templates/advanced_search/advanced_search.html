@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <script src="{% static 'scripts/advanced_search_sets.js' %}"></script>
+<script src="{% static 'scripts/advanced_search_card_types.js' %}"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,10 +26,26 @@
 
         <div class="filter-group">
             <label for="effect">Effect</label>
-            <div>
-                <input type="text" name="effect" id="effect" placeholder='Any effect text, e.g. "draw"'>
-                <div class="help-text">
-                    Enter text that should appear in the effect rules.
+            <input type="text" name="effect" id="effect" placeholder='Any effect text, e.g. "draw"'>
+            <div class="help-text">
+                Enter text that should appear in the effect rules.
+            </div>
+        </div>
+        <div class="filter-group">
+            <label>Card Type</label>
+            <div class="multi-select" id="type-select">
+                <!-- selecionados -->
+                <div class="selected-types" id="selectedTypes"></div>
+                <!-- input -->
+                <input type="text" id="typeSearch" placeholder="Search card types...">
+                <!-- dropdown -->
+                <div class="type-options" id="typeOptions">
+                    {% for type in types %}
+                    <div class="type-option" data-value="{{ type }}">
+                        <img src="https://static.dotgg.gg/riftbound/type/{{ type|lower }}.svg" alt="" class="type-icon">
+                        {{ type|capfirst }}
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
