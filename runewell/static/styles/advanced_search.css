@@ -260,3 +260,62 @@
 .type-option.selected::after {
     content: " ✓";
 }
+
+/* remove spinner nativo */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* layout */
+.cost-input {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.number-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* input */
+.number-wrapper input {
+    width: 60px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-size: 14px;
+    outline: none;
+}
+
+/* botões */
+.number-wrapper button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f5f5f5;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    user-select: none;
+}
+
+.number-wrapper button:hover {
+    background: #e0e0e0;
+}
+
+.number-wrapper button:active {
+    background: #d0d0d0;
+}

@@ -16,6 +16,8 @@ def search_list(request):
     card_colors = request.GET.getlist('domain')
     card_sets = request.GET.getlist('set')
     card_rarities = request.GET.getlist('rarities')
+    cost = request.GET.get('cost')
+    cost_op = request.GET.get('cost_op')
 
     filters = {}
 
@@ -31,6 +33,9 @@ def search_list(request):
         filters['set_name__in'] = card_sets
     if card_rarities is not None and card_rarities:
         filters['rarity__in'] = card_rarities
+
+    if cost is not None and cost != '' and not cost.isspace() and cost_op is not None and cost_op != '' and not cost_op.isspace():
+        filters[f'cost__{cost_op}'] = cost
 
     order_request = request.GET.get("order")
     if order_request not in [order_by.value for order_by in OrderBy]:
