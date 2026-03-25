@@ -288,18 +288,21 @@ input[type="number"] {
     background: #fff;
 }
 
-/* input */
 .number-wrapper input {
-    width: 60px;
+    flex: 1;
+    min-width: 120px;
+    width: auto;
     text-align: center;
     border: none;
     background: transparent;
     color: #333;
     font-size: 14px;
     outline: none;
+
+    position: relative;
+    z-index: 0; /* 👈 fica atrás */
 }
 
-/* botões */
 .number-wrapper button {
     width: 32px;
     height: 32px;
@@ -310,6 +313,10 @@ input[type="number"] {
     cursor: pointer;
     transition: background 0.2s ease;
     user-select: none;
+
+    position: relative;
+    z-index: 1; /* 👈 fica na frente */
+    flex-shrink: 0;
 }
 
 .number-wrapper button:hover {

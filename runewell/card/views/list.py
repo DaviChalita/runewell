@@ -33,9 +33,10 @@ def search_list(request):
         filters['set_name__in'] = card_sets
     if card_rarities is not None and card_rarities:
         filters['rarity__in'] = card_rarities
-
-    if cost is not None and cost != '' and not cost.isspace() and cost_op is not None and cost_op != '' and not cost_op.isspace():
-        filters[f'cost__{cost_op}'] = cost
+    # todo: precisa checar se é numero
+    if cost is not None and cost != '' and not cost.isspace() and cost.isnumeric() \
+            and cost_op is not None and cost_op != '' and not cost_op.isspace():
+        filters[f'cost__{cost_op}'] = max(0, min(int(cost), 2147483647))
 
     order_request = request.GET.get("order")
     if order_request not in [order_by.value for order_by in OrderBy]:
