@@ -2,6 +2,7 @@
 {% load static %}
 <script src="{% static 'scripts/advanced_search_sets.js' %}"></script>
 <script src="{% static 'scripts/advanced_search_card_types.js' %}"></script>
+<script src="{% static 'scripts/advanced_search_cost.js' %}"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,6 +66,33 @@
                     <img src="https://static.dotgg.gg/riftbound/text/rb_rune_chaos.svg"> Chaos</label>
                 <label><input type="checkbox" name="domain" value="Order">
                     <img src="https://static.dotgg.gg/riftbound/text/rb_rune_order.svg"> Order</label>
+            </div>
+        </div>
+        <div class="filter-group">
+            <label for="cost">Cost</label>
+
+            <div class="cost-input">
+                <select name="cost_op" id="cost_op">
+                    <option value="exact">=</option>
+                    <option value="gt">&gt;</option>
+                    <option value="gte">&ge;</option>
+                    <option value="lt">&lt;</option>
+                    <option value="lte">&le;</option>
+                </select>
+
+                <div class="number-wrapper">
+                    <button type="button" class="btn-decrement">−</button>
+
+                    <input
+                            type="number"
+                            name="cost"
+                            id="cost"
+                            min="0"
+                            step="1"
+                    >
+
+                    <button type="button" class="btn-increment">+</button>
+                </div>
             </div>
         </div>
 
