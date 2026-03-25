@@ -1,5 +1,4 @@
 from django.urls import path
-
 from .views import list, details, advanced_search, home_search
 from .views.riot_txt import riot_txt
 
