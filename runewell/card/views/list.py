@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.core.paginator import Paginator
 from django.db.models import F
 from django.shortcuts import render
@@ -18,6 +20,8 @@ def search_list(request):
     card_rarities = request.GET.getlist('rarities')
     cost = request.GET.get('cost')
     cost_op = request.GET.get('cost_op')
+    might = request.GET.get('might')
+    might_op = request.GET.get('might_op')
 
     filters = {}
 
@@ -33,10 +37,10 @@ def search_list(request):
         filters['set_name__in'] = card_sets
     if card_rarities is not None and card_rarities:
         filters['rarity__in'] = card_rarities
-    # todo: precisa checar se é numero
-    if cost is not None and cost != '' and not cost.isspace() and cost.isnumeric() \
-            and cost_op is not None and cost_op != '' and not cost_op.isspace():
-        filters[f'cost__{cost_op}'] = max(0, min(int(cost), 2147483647))
+
+    validate_number_filter_and_add_to_filter(cost, cost_op, filters, 'cost')
+
+    validate_number_filter_and_add_to_filter(might, might_op, filters, 'might')
 
     order_request = request.GET.get("order")
     if order_request not in [order_by.value for order_by in OrderBy]:
@@ -58,3 +62,9 @@ def search_list(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, "list/list.html", {"page_obj": page_obj})
+
+
+def validate_number_filter_and_add_to_filter(number, number_op, filters: dict[Any, Any], field_filter: str):
+    if number is not None and number != '' and not number.isspace() and number.isnumeric() \
+            and number_op is not None and number_op != '' and not number_op.isspace():
+        filters[f'{field_filter}__{number_op}'] = max(0, min(int(number), 2147483647))
