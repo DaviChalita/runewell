@@ -5,6 +5,7 @@ from django.db.models import F
 from django.shortcuts import render
 
 from ..commons.order_by_enum import OrderBy
+from ..commons.rarity_enum import Rarity
 from ..models.card import Card
 
 
@@ -22,7 +23,10 @@ def search_list(request):
     might = request.GET.get('might')
     might_op = request.GET.get('might_op')
     sets = request.GET.getlist('set')
-    rarities = request.GET.getlist('rarities')
+    rarities = request.GET.getlist('rarity')
+    rarity_list = []
+    for rarity in rarities:
+        rarity_list.append(Rarity[rarity.upper()].value)
 
     filters = {}
 
@@ -38,8 +42,8 @@ def search_list(request):
         filters['color__contains'] = colors
     if sets is not None and sets:
         filters['set_name__in'] = sets
-    if rarities is not None and rarities:
-        filters['rarity__in'] = rarities
+    if rarity_list is not None and rarity_list:
+        filters['rarity__in'] = rarity_list
 
     validate_number_filter_and_add_to_filter(cost, cost_op, filters, 'cost')
 

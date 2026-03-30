@@ -2,7 +2,7 @@ from typing import List
 
 from pydantic import BaseModel
 
-from ..commons.rarity import Rarity
+from ..commons.rarity_enum import Rarity
 from ..models.stats import Stats
 
 
