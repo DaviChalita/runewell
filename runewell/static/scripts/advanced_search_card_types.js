@@ -4,63 +4,73 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedTypesContainer = document.getElementById('selectedTypes');
     const typeSearch = document.getElementById('typeSearch');
 
-    let selectedTypes = [];
+    let selectedValues = [];
 
-    function createHiddenInput(value) {
+    function createHiddenInput(value, group) {
         const input = document.createElement('input');
         input.type = 'hidden';
-        input.name = 'card_type';
+        input.name = group;
         input.value = value;
         typeSelect.appendChild(input);
         return input;
     }
 
-    // mostrar dropdown ao focar
+    // abrir dropdown
     typeSearch.addEventListener('focus', () => {
         typeOptions.style.display = 'block';
     });
 
-    // clicar em uma opção
-    typeOptions.querySelectorAll('.type-option').forEach(option => {
-        option.addEventListener('click', () => {
-            const value = option.dataset.value;
+    // CLICK (delegation correta)
+    typeOptions.addEventListener('click', (e) => {
+        const option = e.target.closest('.type-option');
+        if (!option) return;
 
-            if (!selectedTypes.includes(value)) {
-                selectedTypes.push(value);
+        const value = option.dataset.value;
+        const group = option.dataset.group;
 
-                // tag visual
-                const tag = document.createElement('div');
-                tag.className = 'type-tag';
-                tag.innerHTML = `<img src="https://static.dotgg.gg/riftbound/type/${value.toLowerCase()}.svg" alt="">${value}<button type="button">&times;</button>`;
+        const key = `${group}:${value}`;
+        if (selectedValues.includes(key)) return;
 
-                // input hidden
-                const hiddenInput = createHiddenInput(value);
+        selectedValues.push(key);
 
-                tag.querySelector('button').addEventListener('click', () => {
-                    selectedTypesContainer.removeChild(tag);
-                    typeSelect.removeChild(hiddenInput);
-                    selectedTypes = selectedTypes.filter(v => v !== value);
-                    option.classList.remove('selected');
-                });
+        const tag = document.createElement('div');
+        tag.className = 'type-tag';
 
-                selectedTypesContainer.appendChild(tag);
-                option.classList.add('selected');
-            }
+        const hasIcon = option.querySelector('img');
+
+        tag.innerHTML = hasIcon
+            ? `<img src="${hasIcon.src}">${value}<button type="button">&times;</button>`
+            : `${value}<button type="button">&times;</button>`;
+
+        const hiddenInput = createHiddenInput(value, group);
+
+        tag.querySelector('button').addEventListener('click', () => {
+            selectedTypesContainer.removeChild(tag);
+            typeSelect.removeChild(hiddenInput);
+            selectedValues = selectedValues.filter(v => v !== key);
+            option.classList.remove('selected');
         });
+
+        selectedTypesContainer.appendChild(tag);
+        option.classList.add('selected');
     });
 
-    // fechar dropdown ao clicar fora
+    // fechar dropdown
     document.addEventListener('click', e => {
         if (!typeSelect.contains(e.target)) {
             typeOptions.style.display = 'none';
         }
     });
 
-    // filtrar opções pelo input
+    // filtro
     typeSearch.addEventListener('input', () => {
         const search = typeSearch.value.toLowerCase();
+
         typeOptions.querySelectorAll('.type-option').forEach(option => {
-            option.style.display = option.dataset.value.toLowerCase().includes(search) ? 'flex' : 'none';
+            option.style.display =
+                option.dataset.value.toLowerCase().includes(search)
+                    ? 'flex'
+                    : 'none';
         });
     });
 });

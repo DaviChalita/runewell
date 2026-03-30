@@ -12,31 +12,34 @@ def search_list(request):
     if request.method != 'GET':
         return render("non_success_cases/method_not_allowed.html")
 
-    card_name = request.GET.get("name")
-    card_effect = request.GET.get('effect')
-    card_type = request.GET.getlist('card_type')
-    card_colors = request.GET.getlist('domain')
-    card_sets = request.GET.getlist('set')
-    card_rarities = request.GET.getlist('rarities')
+    name = request.GET.get("name")
+    effect = request.GET.get('effect')
+    type_ = request.GET.getlist('type')
+    supertype = request.GET.getlist('supertype')
+    colors = request.GET.getlist('domain')
     cost = request.GET.get('cost')
     cost_op = request.GET.get('cost_op')
     might = request.GET.get('might')
     might_op = request.GET.get('might_op')
+    sets = request.GET.getlist('set')
+    rarities = request.GET.getlist('rarities')
 
     filters = {}
 
-    if card_name is not None and card_name != '' and not card_name.isspace():
-        filters['name__icontains'] = card_name
-    if card_effect is not None and card_effect != '' and not card_name.isspace():
-        filters['effect__icontains'] = card_effect
-    if card_type is not None and card_type:
-        filters['type__in'] = card_type
-    if card_colors is not None and card_colors:
-        filters['color__contains'] = card_colors
-    if card_sets is not None and card_sets:
-        filters['set_name__in'] = card_sets
-    if card_rarities is not None and card_rarities:
-        filters['rarity__in'] = card_rarities
+    if name is not None and name != '' and not name.isspace():
+        filters['name__icontains'] = name
+    if effect is not None and effect != '' and not name.isspace():
+        filters['effect__icontains'] = effect
+    if type_ is not None and type_:
+        filters['type__in'] = type_
+    if supertype is not None and supertype:
+        filters['supertype__in'] = supertype
+    if colors is not None and colors:
+        filters['color__contains'] = colors
+    if sets is not None and sets:
+        filters['set_name__in'] = sets
+    if rarities is not None and rarities:
+        filters['rarity__in'] = rarities
 
     validate_number_filter_and_add_to_filter(cost, cost_op, filters, 'cost')
 

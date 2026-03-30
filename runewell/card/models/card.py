@@ -9,6 +9,7 @@ class Card(models.Model):
     color = ArrayField(models.TextField(null=True,blank=True), blank=True,)
     cost = models.TextField()
     type = models.TextField()
+    supertype = models.TextField()
     might = models.TextField()
     tags = ArrayField(models.TextField(null=True,blank=True), blank=True,)
     set_name = models.TextField()
