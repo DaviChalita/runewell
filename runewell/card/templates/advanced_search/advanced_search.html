@@ -182,6 +182,24 @@
             </div>
         </div>
 
+        <div class="filter-group">
+            <label>Rarity</label>
+
+            <div class="rarities">
+                {% for rarity in rarities %}
+                <label>
+                    <input type="checkbox" name="rarity" value="{{ rarity }}">
+                    <img
+                        class="rarity-icon"
+                        src="https://static.dotgg.gg/riftbound/rarity/{{ rarity|lower }}.svg"
+                        alt="{{ rarity }}"
+                    >
+                    {{ rarity|capfirst }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
         <div class="form-actions">
             <button type="submit">Search with these options</button>
         </div>

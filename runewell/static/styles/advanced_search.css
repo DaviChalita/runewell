@@ -345,3 +345,29 @@ input[type="number"] {
 .type-option {
     padding: 8px 12px 8px 20px; /* 👈 indentação */
 }
+
+.rarities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px; /* 👈 espaço entre cada opção */
+}
+
+.rarities label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rarity-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.rarities label img {
+    display: inline-block;   /* 👈 quebra o block global */
+    width: 16px;
+    height: 16px;
+    max-width: none;         /* 👈 remove o 100% */
+    object-fit: contain;
+}
