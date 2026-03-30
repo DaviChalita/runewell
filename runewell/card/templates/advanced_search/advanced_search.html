@@ -33,20 +33,60 @@
             </div>
         </div>
         <div class="filter-group">
-            <label>Card Type</label>
+            <label>Category</label>
+
             <div class="multi-select" id="type-select">
+
                 <!-- selecionados -->
                 <div class="selected-types" id="selectedTypes"></div>
-                <!-- input -->
-                <input type="text" id="typeSearch" placeholder="Search card types...">
+
+                <!-- input de busca -->
+                <input
+                        type="text"
+                        id="typeSearch"
+                        placeholder="Search types and supertypes..."
+                        autocomplete="off"
+                >
+
                 <!-- dropdown -->
                 <div class="type-options" id="typeOptions">
-                    {% for type in types %}
-                    <div class="type-option" data-value="{{ type }}">
-                        <img src="https://static.dotgg.gg/riftbound/type/{{ type|lower }}.svg" alt="" class="type-icon">
-                        {{ type|capfirst }}
+
+                    <!-- TYPES -->
+                    <div class="option-group">
+                        <div class="option-group-label">Types</div>
+
+                        {% for type in types %}
+                        <div class="type-option"
+                             data-value="{{ type }}"
+                             data-group="type">
+                            <img
+                                    class="type-icon"
+                                    src="https://static.dotgg.gg/riftbound/type/{{ type|lower }}.svg"
+                                    alt="{{ type }}"
+                            >
+                            {{ type|capfirst }}
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+
+                    <!-- SUPERTYPES -->
+                    <div class="option-group">
+                        <div class="option-group-label">Supertypes</div>
+
+                        {% for supertype in supertypes %}
+                        <div class="type-option"
+                             data-value="{{ supertype }}"
+                             data-group="supertype">
+                            <img
+                                    class="type-icon"
+                                    src="https://static.dotgg.gg/riftbound/type/{{ supertype|lower }}.svg"
+                                    alt="{{ supertype }}"
+                            >
+                            {{ supertype|capfirst }}
+                        </div>
+                        {% endfor %}
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -326,3 +326,22 @@ input[type="number"] {
 .number-wrapper button:active {
     background: #d0d0d0;
 }
+
+.option-group {
+    padding: 4px 0;
+}
+
+.option-group-label {
+    pointer-events: none;
+    cursor: default;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    padding: 6px 12px;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.type-option {
+    padding: 8px 12px 8px 20px; /* 👈 indentação */
+}
