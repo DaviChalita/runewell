@@ -2,7 +2,7 @@
 {% load static %}
 <script src="{% static 'scripts/advanced_search_sets.js' %}"></script>
 <script src="{% static 'scripts/advanced_search_card_types.js' %}"></script>
-<script src="{% static 'scripts/advanced_search_cost.js' %}"></script>
+<script src="{% static 'scripts/advanced_search_number_filter.js' %}"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -88,6 +88,34 @@
                             inputmode="numeric"
                             name="cost"
                             id="cost"
+                            placeholder="e.g. 3"
+                    >
+
+                    <button type="button" class="btn-increment">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label for="might">Might</label>
+
+            <div class="cost-input">
+                <select name="might_op" id="might_op">
+                    <option value="exact">=</option>
+                    <option value="gt">&gt;</option>
+                    <option value="gte">&ge;</option>
+                    <option value="lt">&lt;</option>
+                    <option value="lte">&le;</option>
+                </select>
+
+                <div class="number-wrapper">
+                    <button type="button" class="btn-decrement">−</button>
+
+                    <input
+                            type="text"
+                            inputmode="numeric"
+                            name="might"
+                            id="might"
                             placeholder="e.g. 3"
                     >
 

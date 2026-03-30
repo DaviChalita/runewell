@@ -2,7 +2,7 @@ let intervalId = null;
 
 function getInput(button) {
     const wrapper = button.closest('.number-wrapper');
-    return wrapper?.querySelector('#cost');
+    return wrapper?.querySelector('input');
 }
 
 function initializeIfEmpty(input, direction) {
@@ -83,13 +83,20 @@ document.addEventListener('submit', (e) => {
     const form = e.target;
     if (!form.matches('.advanced-form')) return;
 
-    const cost = form.querySelector('#cost');
-    const costOp = form.querySelector('#cost_op');
+    const fields = [
+        { value: '#cost', op: '#cost_op' },
+        { value: '#might', op: '#might_op' }
+    ];
 
-    if (!cost || cost.value === '') {
-        if (cost) cost.disabled = true;
-        if (costOp) costOp.disabled = true;
-    }
+    fields.forEach(({ value, op }) => {
+        const input = form.querySelector(value);
+        const operator = form.querySelector(op);
+
+        if (!input || input.value === '') {
+            if (input) input.disabled = true;
+            if (operator) operator.disabled = true;
+        }
+    });
 });
 
 const INT4_MAX = 2147483647;
@@ -99,7 +106,7 @@ const INT4_MIN = 0; // ajuste se quiser permitir negativo
 document.addEventListener('keydown', (e) => {
     const input = e.target;
 
-    if (!input.matches('#cost')) return;
+    if (!input.matches('#cost, #might')) return;
 
     const allowedKeys = [
         'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'
@@ -117,7 +124,7 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('input', (e) => {
     const input = e.target;
 
-    if (!input.matches('#cost')) return;
+    if (!input.matches('#cost, #might')) return;
 
     let value = input.value;
 
