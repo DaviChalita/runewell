@@ -371,3 +371,30 @@ input[type="number"] {
     max-width: none;         /* 👈 remove o 100% */
     object-fit: contain;
 }
+
+.domain-mode {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+
+    font-size: 12px;
+
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 6px;
+    padding: 8px 10px;
+    width: fit-content;
+}
+
+
+.domain-mode label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 525;
+}
+
+.domain-mode input[type="radio"] {
+    transform: scale(0.8);
+    margin: 0;
+}
