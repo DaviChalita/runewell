@@ -79,6 +79,12 @@
     gap: 6px;
 }
 
+.domains img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
 /* ==============================
    Button
    ============================== */
