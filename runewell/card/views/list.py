@@ -17,7 +17,8 @@ def search_list(request):
     effect = request.GET.get('effect')
     type_ = request.GET.getlist('type')
     supertype = request.GET.getlist('supertype')
-    colors = request.GET.getlist('domain')
+    domains = request.GET.getlist('domain')
+    domain_mode = request.GET.get('domain_mode')
     cost = request.GET.get('cost')
     cost_op = request.GET.get('cost_op')
     might = request.GET.get('might')
@@ -38,8 +39,13 @@ def search_list(request):
         filters['type__in'] = type_
     if supertype is not None and supertype:
         filters['supertype__in'] = supertype
-    if colors is not None and colors:
-        filters['color__contains'] = colors
+    if domains is not None and domains:
+        if domain_mode is not None and domain_mode != '' and domain_mode is not domain_mode.isspace():
+            if domain_mode == 'include':
+                filters['color__overlap'] = domains
+            elif domain_mode == 'exact':
+                filters['color__contains'] = domains
+
     if sets is not None and sets:
         filters['set_name__in'] = sets
     if rarity_list is not None and rarity_list:
