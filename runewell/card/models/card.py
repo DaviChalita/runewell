@@ -15,6 +15,8 @@ class Card(models.Model):
     set_name = models.TextField()
     rarity = models.TextField()
     image = models.TextField()
+    is_promo = models.BooleanField()
+    is_token = models.BooleanField()
 
     class Meta:
         db_table = 'cards'

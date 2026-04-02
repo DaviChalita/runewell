@@ -112,7 +112,8 @@
                     <img src="https://static.dotgg.gg/riftbound/colors/colorless.webp"> Colorless</label>
             </div>
             <div class="domain-mode">
-                <label><input type="radio" name="domain_mode" value="include" checked> Include at least one of these Domains</label>
+                <label><input type="radio" name="domain_mode" value="include" checked> Include at least one of these
+                    Domains</label>
                 <label><input type="radio" name="domain_mode" value="exact"> Exactly all these Domains</label>
             </div>
         </div>
@@ -192,19 +193,27 @@
 
         <div class="filter-group">
             <label>Rarity</label>
-
             <div class="rarities">
-                {% for rarity in rarities %}
                 <label>
-                    <input type="checkbox" name="rarity" value="{{ rarity }}">
-                    <img
-                            class="rarity-icon"
-                            src="https://static.dotgg.gg/riftbound/rarity/{{ rarity|lower }}.svg"
-                            alt="{{ rarity }}"
-                    >
-                    {{ rarity|capfirst }}
-                </label>
-                {% endfor %}
+                    <input type="checkbox" name="rarity" value="COMMON">
+                    <img class="rarity-icon" src="https://static.dotgg.gg/riftbound/rarity/common.svg"
+                         alt="COMMON"> Common </label>
+                <label>
+                    <input type="checkbox" name="rarity" value="UNCOMMON">
+                    <img class="rarity-icon" src="https://static.dotgg.gg/riftbound/rarity/uncommon.svg"
+                         alt="UNCOMMON"> Uncommon </label>
+                <label>
+                    <input type="checkbox" name="rarity" value="RARE">
+                    <img class="rarity-icon" src="https://static.dotgg.gg/riftbound/rarity/rare.svg"
+                         alt="RARE"> Rare </label>
+                <label>
+                    <input type="checkbox" name="rarity" value="EPIC">
+                    <img class="rarity-icon" src="https://static.dotgg.gg/riftbound/rarity/epic.svg"
+                         alt="EPIC"> Epic </label>
+                <label>
+                    <input type="checkbox" name="rarity" value="SHOWCASE">
+                    <img class="rarity-icon" src="https://static.dotgg.gg/riftbound/rarity/overnumbered.svg"
+                         alt="SHOWCASE"> Showcase </label>
             </div>
         </div>
 
